@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<include file="$(find ncu_mdog)/launch/includes/mdog_Drivers.launch.xml"></include>
+<node name="main" pkg="ncu_mdog" type="main" output="screen">
+</node>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch"/>
+    <arg name="opencv" default="false"/>
+    <node name="RGBD_sample" pkg="realsense_sample" type="RGBD_sample" output="screen" args="$(arg opencv)"/>
+
+
+  <!-- rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find ncu_mdog)/rviz/rviz.rviz"/>
+
+</launch>

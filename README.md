@@ -1,7 +1,7 @@
 # ncu_mdog
 
 ## About The Project
-This is ncu_the drivers and sample code of ncu_mdog.
+This is the drivers and sample code of ncu_mdog.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Hardware List
@@ -10,8 +10,8 @@ This is ncu_the drivers and sample code of ncu_mdog.
 + Ydlidar X4
 + Intel Realsence D435i
 + MPU9250
-+ SG996*12
-+ PCA9685
++ HTS-20L * 12
++ [One-Wire Serial Bus Servo Controller Board](https://www.hiwonder.com/products/serial-bus-servo-controller)
 
 
 ### Built With
@@ -20,7 +20,6 @@ This is ncu_the drivers and sample code of ncu_mdog.
 + Ubuntu 18.04
 + Ros melodic
 + [RTIMULIB](https://github.com/jetsonhacks/RTIMULib)
-+ [ros-i2cpwmboard](https://github.com/mentor-dyun/ros-i2cpwmboard)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -29,7 +28,7 @@ This is ncu_the drivers and sample code of ncu_mdog.
 + apt part
  ```sh
 sudo apt updat
-sudo apt-get install i2c-tools libi2c-dev build-essential python3-catkin-tools
+sudo apt-get install build-essential python3-catkin-tools
 ```
 + cmake part
  ```sh
@@ -45,20 +44,19 @@ sudo make install
 sudo ldconfig
 ```
 
++ python package
+```sh
+pip install pyserial
+```
+
 ### Installation
 
 get to your workspace/src then clone and build the package:
 ```sh
 cd ~/catkin_ws/src
-git clone https://github.com/mentor-dyun/ros-i2cpwmboard.git
+git clone https://github.com/NcuMathRoboticsLab/NCU_Mdog.git
 cd ..
-catkin_make
-source devel/setup.sh (source ~/.bashrc)
-
-cd ~/catkin_ws/src
-git clone https://github.com/neko7055/ncu_mdog.git
-cd ..
-catkin_make
+catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 source devel/setup.sh (source ~/.bashrc)
 roscd ncu_mdog/startup
 sudo chmod 777 ./*
@@ -75,7 +73,6 @@ roslaunch ncu_mdog project_sample.launch
 ## Acknowledgments
 
 + [RTIMULIB](https://github.com/jetsonhacks/RTIMULib.git)
-+ [ros_i2cbread](https://github.com/mentor-dyun/ros-i2cpwmboard.git)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

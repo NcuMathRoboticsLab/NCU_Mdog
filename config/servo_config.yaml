@@ -1,0 +1,20 @@
+# Since the values of servos are from 0 to 1000, and angles are from 0 to 240 degrees
+# so the range of uart servos will be 750 (125 ~ 875),that means its angles will
+# be from 30 to 210 degrees so that it will rotate around 180 degrees.
+
+com_port: /dev/ttyTHS1  # USB: /dev/ttyACM0, GPIO: /dev/ttyTHS1
+
+center: [500.0, 500.0, 500.0,
+         500.0, 500.0, 500.0,
+         500.0, 500.0, 500.0,
+         500.0, 500.0, 500.0]
+
+range: [750.0, 750.0, 750.0,
+        750.0, 750.0, 750.0,
+        750.0, 750.0, 750.0,
+        750.0, 750.0, 750.0]
+
+direction: [ 1,  1,  1,
+             1,  1, -1,
+            -1, -1,  1,
+            -1, -1, -1]

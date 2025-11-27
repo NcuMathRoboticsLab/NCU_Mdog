@@ -7,8 +7,7 @@ project(ncu_mdog)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  i2cpwm_board
+find_package(catkin COMPONENTS
   geometry_msgs
   sensor_msgs
   message_generation
@@ -17,6 +16,18 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   tf
   visualization_msgs
+)
+
+add_message_files(
+  FILES
+  servos_angle.msg
+  Servo.msg
+  ServoArray.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
 )
 
 set(SDK_PATH "./sdk/")
@@ -28,10 +39,15 @@ FILE(GLOB SDK_SRC
 )
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES project_sample
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+  CATKIN_DEPENDS 
+  message_runtime 
+  roscpp
+  rospy
+  std_msgs 
+  sensor_msgs 
+  geometry_msgs 
+  tf 
+  visualization_msgs    
 )
 
 ###########
@@ -86,9 +102,6 @@ target_link_libraries(
   ${catkin_LIBRARIES}
   RTIMULib
 )
-
-add_executable(motor_node src/driver_src/motor_node.cpp)
-target_link_libraries(motor_node ${catkin_LIBRARIES})
 
 install(TARGETS ydlidar_node ydlidar_client
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
